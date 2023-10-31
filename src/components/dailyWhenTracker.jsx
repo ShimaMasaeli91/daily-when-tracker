@@ -27,7 +27,7 @@ const DailyWhenTracker = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const apiUrl = "https://example.com/api/track-daily-when";
+    const apiUrl = "https://dev-api-when-time-tracker.iplugx.ir/api/docs";
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
@@ -99,7 +99,7 @@ const DailyWhenTracker = () => {
           </select>
         </div>
       </div>
-      <button className="button" type="submit">
+      <button className="button" type="submit" onClick={handleSubmit}>
         Submit
       </button>
     </div>
