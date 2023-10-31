@@ -26,9 +26,12 @@ FONT SIZE SYSTEM (px)
   align-items: start;
   gap: 20%;
 }
-
+.questions input {
+  padding-left: 10px;
+}
 .questions select {
   color: #adb5bd;
+  padding-left: 5px;
 }
 .questions input,
 .questions select {
@@ -41,8 +44,11 @@ FONT SIZE SYSTEM (px)
 }
 /* .questions input:focus,
 .questions select:focus {
-  background-color: #adb5bd;
+  padding: 5px;
 } */
+.drop-down {
+  border-radius: 5%;
+}
 .button {
   width: 70vw;
   margin-top: 3%;
