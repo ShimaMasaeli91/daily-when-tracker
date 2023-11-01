@@ -27,15 +27,15 @@ const DailyWhenTracker = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const apiUrl = "https://dev-api-when-time-tracker.iplugx.ir/api/docs";
+    const apiUrl =
+      "https://dev-api-when-time-tracker.iplugx.ir/api/time_tracks";
+    const answersString = JSON.stringify(answers);
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        answers,
-      }),
+      body: answersString,
     });
 
     if (response.ok) {
