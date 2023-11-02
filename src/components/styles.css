@@ -23,7 +23,7 @@ FONT SIZE SYSTEM (px)
 .questions {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 20%;
 }
 .questions input {
