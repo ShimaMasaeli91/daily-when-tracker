@@ -2,11 +2,31 @@ import React, { useState } from "react";
 import "./styles.css";
 
 const DailyWhenTracker = () => {
+  const now = new Date();
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
   const [answers, setAnswers] = useState({
-    whatAmDoing: "",
-    mentalAlertness: "",
-    energyLevel: "",
+    day: days[now.getDay()],
+    date: now.toISOString(),
+    title: "",
+    createdAt: now.toISOString(),
+    alertScore: 0,
+    energeticScore: 0,
   });
+
+  debugger;
+  console.info(answers);
+  console.info("Info ------");
+  console.log("log ------");
+  console.warn("warn ------");
+  console.error("error ------");
 
   //answers is a state variable that contains the current values of the user's answers to the three questions. It is initialized to an empty object, and it is updated whenever the user changes an answer.
   //setAnswers is a function that can be used to update the answers state variable. It takes a new object as an argument, and it overwrites the current answers state variable with the new object.
@@ -29,11 +49,15 @@ const DailyWhenTracker = () => {
 
     const apiUrl =
       "https://dev-api-when-time-tracker.iplugx.ir/api/time_tracks";
+    // Parse the alertScore field to an integer
+    answers.alertScore = parseInt(answers.alertScore);
+    answers.energeticScore = parseInt(answers.energeticScore);
     const answersString = JSON.stringify(answers);
+    console.warn(answers);
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/ld+json",
       },
       body: answersString,
     });
@@ -50,20 +74,20 @@ const DailyWhenTracker = () => {
       <h1 className="main-header">DAILY WHEN TRACKER</h1>
       <div className="questions">
         <div>
-          <label htmlFor="whatAmDoing">What am I doing?</label>
+          <label htmlFor="title">What am I doing?</label>
           <input
             type="text"
-            name="whatAmDoing"
+            name="title"
             onChange={handleChange}
-            value={answers.whatAmDoing}
+            value={answers.title}
           />
         </div>
         <div>
-          <label htmlFor="mentalAlertness">How mentally alert do I feel?</label>
+          <label htmlFor="alertScore">How mentally alert do I feel?</label>
           <select
-            name="mentalAlertness"
+            name="alertScore"
             onChange={handleChange}
-            value={answers.mentalAlertness}
+            value={answers.alertScore}
           >
             <option value="">Select an option</option>
             <option value="1">1</option>
@@ -79,11 +103,11 @@ const DailyWhenTracker = () => {
           </select>
         </div>
         <div>
-          <label htmlFor="energyLevel">How energetic do I feel?</label>
+          <label htmlFor="energeticScore">How energetic do I feel?</label>
           <select
-            name="energyLevel"
+            name="energeticScore"
             onChange={handleChange}
-            value={answers.energyLevel}
+            value={answers.energeticScore}
           >
             <option value="">Select an option</option>
             <option value="1">1</option>
