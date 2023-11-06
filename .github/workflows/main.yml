@@ -1,0 +1,23 @@
+name: Deploy on server
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:       
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd ${{secrets.SERVER_PATH}}/daily-when-tracker
+            git pull origin main
+            git status
+            export PATH="/root/.local/share/fnm:$PATH"
+            eval "`fnm env`"
+            npm install --only=prod
+            npm run build
+            rm node_modules -rf
