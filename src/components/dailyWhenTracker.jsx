@@ -53,7 +53,7 @@ const DailyWhenTracker = () => {
 
   return (
     <div className="container">
-      <h1 className="main-header">DAILY WHEN TRACKER</h1>
+      <h1 className="main-header">DAILY WHEN TRACKER :)</h1>
       <div className="questions">
         <div>
           <label htmlFor="title">What am I doing?</label>
